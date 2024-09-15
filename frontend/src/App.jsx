@@ -4,7 +4,7 @@ import Right from './right/right';
 function App() {
   return (
     <>
-    <div classname="flex">
+    <div className="flex h-screen">
     <Left></Left>
     <Right></Right>
     </div>
