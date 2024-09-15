@@ -4,9 +4,11 @@ import Right from './right/right';
 function App() {
   return (
     <>
-    App
-    <Left>LEFT</Left>
-    <Right>RIGHT</Right>
+    <div classname="flex">
+    <Left></Left>
+    <Right></Right>
+    </div>
+    
     </>
   );
 }
