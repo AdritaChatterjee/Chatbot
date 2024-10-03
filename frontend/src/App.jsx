@@ -7,8 +7,8 @@ function App() {
     <>
     <div className="flex h-screen">
     <Logout></Logout>
-    <Left></Left>
-    <Right></Right>
+    <Left/>
+    <Right/>
     </div>
     
     </>

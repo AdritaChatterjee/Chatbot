@@ -7,3 +7,7 @@
   
 }
 
+.flex-anything::-webkit-scrollbar{
+  display: none;
+}
+
