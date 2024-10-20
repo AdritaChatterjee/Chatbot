@@ -1,5 +1,6 @@
 const User = require('../models/user.model.js');
 const bcrypt=require('bcryptjs');
+const createTokenAndSaveCookie=require('../jwt/generateToken.js');
 const signup = async (req, res) => {
     try {
         const { fullname, email, password, confirmpassword } = req.body;
@@ -24,12 +25,36 @@ const signup = async (req, res) => {
 
         // Save the user
         await newUser.save();
-        res.status(201).json({ message: "User registration done successfully" });
-
+        if(newUser){
+        createTokenAndSaveCookie(newUser._id,res);
+        res.status(201).json({ message: "User registration done successfully",newUser});
+        }
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Server error" });
     }
 };
 
-module.exports = signup;
+const login = async(req,res)=>{
+    try{
+        const{email,password}=req.body;
+        const user=await User.findOne({email});
+        const isMatch =await bcrypt.compare(password,user.password);
+        if(!user || !isMatch){
+            return res.status(404).json({message:"Invalid user or password"});
+        }
+        createTokenAndSaveCookie(user._id,res);
+        res.status(201).json({message:"User logged in successfully",user:{
+            _id:user._id,
+            name:user.name,
+            email:user.email,
+        },
+    });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({message:"Server error"});
+    }
+};
+
+module.exports ={signup,login};
