@@ -5,7 +5,7 @@ function Search() {
         <div className='p-4 h-[10vh]'>
             <form action="">
                 <label className="input input-bordered flex items-center gap-2 pt-2">
-                    <input type="text" className="grow" placeholder="Search" />
+                    <input type="text" className="grow text-black" placeholder="Search" />
                     <button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
